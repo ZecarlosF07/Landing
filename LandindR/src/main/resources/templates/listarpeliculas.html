@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${titulo}">Insert title here</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-dark">
+    <a class="navbar-brand" href="#">Multicines MovieCity</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/clientes/listar}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/peliculas/listar}">Peliculas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/peliculas/ayudar}">Ayuda</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <h2 class="primary" th:text="${titulo}" align="center"></h2>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>id</th>
+      <th>nombre</th>
+      <th>descripción</th>
+      <th>director</th>
+      <th>Imagen</th>
+      <th>Duracion</th>
+      <th>Trailer</th>
+      <th>Categoria</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="pelicula: ${peliculas}">
+
+      <td th:text="${pelicula.id}"></td>
+      <td th:text="${pelicula.nombre}"></td>
+      <td th:text="${pelicula.descripcion}"></td>
+      <td th:text="${pelicula.director}"></td>
+      <td th:text="${pelicula.imagen}"></td>
+      <td th:text="${pelicula.duracion}"></td>
+      <!--<td  th:text="${pelicula.trailer}">-->
+      <td> <a th:text="${pelicula.trailer}" th:href="@{/peliculas/crear/}+${pelicula.id}"></a></td>
+      <td th:text="${pelicula.categoriaPelicula}"></td>
+      <td><a  class="btn btn-primary btn-xs" th:href="@{/peliculas/crear/}+${pelicula.id}" th:text="Editar"></a></td>
+      <td><a  class="btn btn-danger btn-xs" th:href="@{/peliculas/eliminar/}+${pelicula.id}" th:text="Eliminar"></a></td>
+      <!-- <td th:text ="${cliente.createAt}"></td> -->
+
+    </tr>
+    </tbody>
+  </table>
+
+  <a class="btn btn-primary" th:href="@{/peliculas/crear}">Crear Cliente</a>
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
